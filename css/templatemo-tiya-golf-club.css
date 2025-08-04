@@ -652,6 +652,9 @@ strong {
   color: #FFFFFF;
   font-family: sans-serif;
   position: relative;
+   width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 
   /* REMOVE estes dois ↓ */
   /* height: 100vh; */
@@ -704,6 +707,9 @@ strong {
   BACKGROUND IMAGE SECTION        
 -----------------------------------------*/
 .section-bg-image {
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 0),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015) 1px, transparent 0);
   background-image: url('../images/frederik-rosar-NDSZcCfnsbY-unsplash.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -1390,28 +1396,38 @@ background-size: 40px 40px;
   position: relative;
   margin: 0;
   padding: 0;
+  overflow-x: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  overflow-y: hidden;
+}
+.carousel-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .custom-section .container {
   padding: 2rem;
 }
 
+
+
+
 .carousel-wrapper {
-  width: 100%;       /* largura total da viewport */
-  max-width: 100vw;  /* para garantir que não ultrapasse a viewport */
-  height: 393px;     /* altura fixa para desktop */
-  overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
+  height: 393px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   margin: 0 auto;
-  position: relative;
   display: flex;
-  justify-content: center; /* centra o conteúdo horizontalmente */
-  align-items: center;     /* centra verticalmente se necessário */
+  align-items: center;
+  cursor: grab;
 }
 
 .carousel-track {
   display: flex;
-  width: max-content; /* largura total do conteúdo */
-  animation: scroll 40s linear infinite;
+  width: max-content;
 }
 
 .carousel-track img {
@@ -1421,47 +1437,32 @@ background-size: 40px 40px;
   margin-right: 20px;
   border-radius: 12px;
   flex-shrink: 0;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* Remove margem do último da sequência duplicada */
-.carousel-track img:nth-last-child(-n+11) {
-  margin-right: 20px;
-}
-
-.carousel-track img:last-child {
-  margin-right: 0;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50%)); /* desliza metade do track para a esquerda */
-  }
-}
-
-/* Responsivo - tablet e mobile */
+/* Responsivo */
 @media (max-width: 900px) {
-  .carousel-wrapper {
-    width: 100%;
-    height: auto; /* ajusta altura automaticamente */
-  }
   .carousel-track img {
-    width: 180px; /* reduz o tamanho das imagens */
-    height: 278px; /* altura proporcional a 254x393 */
+    width: 180px;
+    height: 278px;
     margin-right: 15px;
   }
 }
 
 @media (max-width: 500px) {
   .carousel-track img {
-    width: 190px; /* ainda menor para smartphones */
-    height: 294px; /* altura proporcional */
+    width: 190px;
+    height: 294px;
     margin-right: 10px;
   }
 }
+.carousel-wrapper.dragging {
+  cursor: grabbing;
+}
+
+
+
+
 
 .mb-lg-3 {
   text-align: center;
@@ -1489,4 +1490,77 @@ background-size: 40px 40px;
 .modulo-card h4 {
   margin-top: 10px;
   color: #fec468;
+}
+
+.cta-section {
+  background-color: #0b101a;
+  color: #fff;
+  padding: 60px 0;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 0),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.cta-section .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-section p {
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.cta-section .lead {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+.bonus-section {
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 0),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015) 1px, transparent 0);
+  background-size: 40px 40px;
+  background-color: #0b101a;
+  color: #ffffff;
+  font-family: sans-serif;
+  width: 100%;
+  padding: 60px 20px;
+  box-sizing: border-box;
+}
+
+.bonus-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.bonus-section .lead {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.bonus-section .bonus-extra {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-top: 20px;
+}
+
+/* Botão com estilo coerente */
+.custom-btn {
+  background-color: transparent;
+  border: 2px solid #f39c12;
+  color: #f39c12;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.custom-btn:hover {
+  background-color: #f39c12;
+  color: #0b101a;
+  transform: scale(1.05);
 }
